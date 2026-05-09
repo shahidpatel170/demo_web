@@ -1,1504 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>VELORA INTERIORS | Premium Interior & Modular Design</title>
-
-<meta name="description" content="Premium Interior & Modular Design Solutions">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-
-/* ======================================================
-   MODERN CSS RESET
-====================================================== */
-
-*,
-*::before,
-*::after{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-    color-scheme:dark light;
-}
-
-body{
-    min-height:100vh;
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
-    background:var(--bg);
-    color:var(--text);
-    transition:
-    background .4s ease,
-    color .4s ease;
-}
-
-/* ======================================================
-   THEME VARIABLES
-====================================================== */
-
-:root{
-
-    --bg:#0b0f19;
-    --bg-secondary:#111827;
-
-    --card:rgba(255,255,255,0.06);
-
-    --text:#ffffff;
-    --text-secondary:#cfd4dc;
-
-    --gold:#d4af37;
-    --gold-2:#ffdf80;
-
-    --border:rgba(255,255,255,0.09);
-
-    --shadow:
-    0 10px 30px rgba(0,0,0,.2),
-    0 30px 80px rgba(0,0,0,.4);
-
-    --gradient:
-    linear-gradient(
-        135deg,
-        #d4af37 0%,
-        #ffdf80 100%
-    );
-
-    --radius:28px;
-
-    --max-width:1400px;
-
-    --section-padding:120px;
-
-}
-
-/* ======================================================
-   LIGHT THEME
-====================================================== */
-
-body.light{
-
-    --bg:#f5f6fa;
-    --bg-secondary:#ffffff;
-
-    --card:rgba(255,255,255,0.7);
-
-    --text:#111827;
-    --text-secondary:#4b5563;
-
-    --border:rgba(0,0,0,0.07);
-
-    --shadow:
-    0 10px 25px rgba(0,0,0,.05),
-    0 20px 50px rgba(0,0,0,.08);
-
-}
-
-/* ======================================================
-   GLOBAL
-====================================================== */
-
-img{
-    display:block;
-    width:100%;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-button{
-    font:inherit;
-}
-
-.container{
-    width:min(var(--max-width), calc(100% - 40px));
-    margin-inline:auto;
-}
-
-section{
-    padding:var(--section-padding) 0;
-    position:relative;
-}
-
-.section-tag{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    background:
-    color-mix(in srgb, var(--gold) 10%, transparent);
-
-    border:1px solid
-    color-mix(in srgb, var(--gold) 30%, transparent);
-
-    color:var(--gold);
-
-    margin-bottom:24px;
-
-    font-weight:600;
-}
-
-.section-title{
-
-    font-size:
-    clamp(2.4rem, 6vw, 5rem);
-
-    line-height:1.05;
-
-    font-weight:900;
-
-    margin-bottom:24px;
-
-    max-width:800px;
-}
-
-.section-title span{
-    background:var(--gradient);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.section-description{
-    color:var(--text-secondary);
-    max-width:700px;
-    font-size:1.08rem;
-    line-height:1.8;
-}
-
-/* ======================================================
-   PREMIUM BACKGROUND
-====================================================== */
-
-.bg-grid{
-    position:fixed;
-    inset:0;
-
-    background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-
-    background-size:80px 80px;
-
-    mask-image:radial-gradient(circle at center, black, transparent 85%);
-
-    z-index:-5;
-}
-
-.bg-glow{
-    position:fixed;
-    inset:0;
-    z-index:-6;
-
-    background:
-    radial-gradient(circle at top left,
-    rgba(212,175,55,.20),
-    transparent 30%),
-
-    radial-gradient(circle at bottom right,
-    rgba(255,223,128,.10),
-    transparent 35%),
-
-    radial-gradient(circle at center,
-    rgba(212,175,55,.06),
-    transparent 45%);
-}
-
-/* ======================================================
-   HEADER
-====================================================== */
-
-header{
-
-    position:fixed;
-    top:0;
-    left:0;
-
-    width:100%;
-
-    z-index:999;
-
-    backdrop-filter:blur(18px);
-
-    background:
-    color-mix(in srgb, var(--bg) 82%, transparent);
-
-    border-bottom:1px solid var(--border);
-}
-
-.nav{
-
-    height:82px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.logo{
-
-    font-size:1.6rem;
-    font-weight:900;
-    letter-spacing:.1em;
-}
-
-.logo span{
-    color:var(--gold);
-}
-
-.nav-links{
-
-    display:flex;
-    gap:40px;
-
-    list-style:none;
-}
-
-.nav-links a{
-
-    position:relative;
-
-    color:var(--text-secondary);
-
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:var(--text);
-}
-
-.nav-links a::after{
-
-    content:'';
-
-    position:absolute;
-
-    left:0;
-    bottom:-10px;
-
-    width:0;
-    height:2px;
-
-    background:var(--gradient);
-
-    transition:.4s ease;
-}
-
-.nav-links a:hover::after{
-    width:100%;
-}
-
-.nav-actions{
-    display:flex;
-    align-items:center;
-    gap:16px;
-}
-
-/* ======================================================
-   BUTTONS
-====================================================== */
-
-.btn{
-
-    border:none;
-    cursor:pointer;
-
-    border-radius:999px;
-
-    padding:16px 28px;
-
-    transition:.35s ease;
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-}
-
-.btn-primary{
-
-    background:var(--gradient);
-
-    color:#111;
-
-    font-weight:800;
-
-    box-shadow:
-    0 15px 35px rgba(212,175,55,.35);
-}
-
-.btn-primary:hover{
-    transform:translateY(-4px);
-}
-
-.btn-outline{
-
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.04);
-
-    color:var(--text);
-}
-
-.btn-outline:hover{
-    background:rgba(255,255,255,.08);
-}
-
-/* ======================================================
-   THEME TOGGLE
-====================================================== */
-
-.theme-toggle{
-
-    width:52px;
-    height:52px;
-
-    border-radius:50%;
-
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.05);
-
-    color:var(--text);
-
-    display:grid;
-    place-items:center;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.theme-toggle:hover{
-    transform:rotate(180deg);
-}
-
-/* ======================================================
-   HERO
-====================================================== */
-
-.hero{
-
-    min-height:100svh;
-
-    display:flex;
-    align-items:center;
-
-    padding-top:100px;
-
-    overflow:hidden;
-}
-
-.hero-grid{
-
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    align-items:center;
-    gap:60px;
-}
-
-.hero-content{
-
-    position:relative;
-    z-index:2;
-}
-
-.hero-title{
-
-    font-size:
-    clamp(3rem, 8vw, 7rem);
-
-    line-height:.95;
-
-    font-weight:900;
-
-    margin-bottom:32px;
-}
-
-.hero-title span{
-    background:var(--gradient);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.hero-description{
-
-    max-width:700px;
-
-    color:var(--text-secondary);
-
-    font-size:1.1rem;
-
-    line-height:1.9;
-
-    margin-bottom:40px;
-}
-
-.hero-actions{
-    display:flex;
-    gap:18px;
-    flex-wrap:wrap;
-}
-
-.hero-image{
-
-    position:relative;
-}
-
-.hero-image::before{
-
-    content:'';
-
-    position:absolute;
-
-    inset:-20px;
-
-    border-radius:40px;
-
-    background:var(--gradient);
-
-    filter:blur(80px);
-
-    opacity:.25;
-
-    z-index:-1;
-}
-
-.hero-image img{
-
-    border-radius:40px;
-
-    height:700px;
-
-    object-fit:cover;
-
-    box-shadow:var(--shadow);
-
-    border:1px solid var(--border);
-}
-
-/* ======================================================
-   FLOATING CARD
-====================================================== */
-
-.floating-card{
-
-    position:absolute;
-
-    bottom:40px;
-    left:-40px;
-
-    width:280px;
-
-    padding:24px;
-
-    border-radius:24px;
-
-    background:
-    color-mix(in srgb, var(--bg) 70%, transparent);
-
-    border:1px solid var(--border);
-
-    backdrop-filter:blur(16px);
-
-    box-shadow:var(--shadow);
-}
-
-.floating-card h3{
-    font-size:2rem;
-    color:var(--gold);
-}
-
-/* ======================================================
-   SERVICES
-====================================================== */
-
-.services-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-    gap:30px;
-
-    margin-top:60px;
-}
-
-.service-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    padding:36px;
-
-    border-radius:var(--radius);
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    backdrop-filter:blur(20px);
-
-    transition:.45s ease;
-}
-
-.service-card:hover{
-
-    transform:
-    translateY(-10px);
-
-    border-color:
-    rgba(212,175,55,.3);
-}
-
-.service-card::before{
-
-    content:'';
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-    180deg,
-    transparent,
-    rgba(212,175,55,.08)
-    );
-
-    opacity:0;
-
-    transition:.4s;
-}
-
-.service-card:hover::before{
-    opacity:1;
-}
-
-.service-icon{
-
-    width:70px;
-    height:70px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:22px;
-
-    background:
-    color-mix(in srgb, var(--gold) 15%, transparent);
-
-    margin-bottom:26px;
-
-    font-size:2rem;
-}
-
-.service-card h3{
-
-    font-size:1.5rem;
-
-    margin-bottom:18px;
-}
-
-.service-card p{
-
-    color:var(--text-secondary);
-
-    line-height:1.8;
-}
-
-/* ======================================================
-   PORTFOLIO
-====================================================== */
-
-.portfolio-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(340px,1fr));
-
-    gap:30px;
-
-    margin-top:60px;
-}
-
-.portfolio-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:32px;
-
-    height:500px;
-
-    isolation:isolate;
-}
-
-.portfolio-card img{
-
-    width:100%;
-    height:100%;
-    object-fit:cover;
-
-    transition:1s ease;
-}
-
-.portfolio-card:hover img{
-    transform:scale(1.08);
-}
-
-.portfolio-overlay{
-
-    position:absolute;
-    inset:0;
-
-    background:
-    linear-gradient(
-    to top,
-    rgba(0,0,0,.9),
-    transparent 60%
-    );
-
-    display:flex;
-    align-items:flex-end;
-
-    padding:30px;
-}
-
-.portfolio-overlay h3{
-
-    font-size:1.8rem;
-}
-
-/* ======================================================
-   STATS
-====================================================== */
-
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(240px,1fr));
-
-    gap:24px;
-
-    margin-top:60px;
-}
-
-.stat-card{
-
-    padding:40px;
-
-    border-radius:30px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    text-align:center;
-
-    backdrop-filter:blur(20px);
-}
-
-.stat-card h3{
-
-    font-size:4rem;
-
-    color:var(--gold);
-
-    margin-bottom:10px;
-}
-
-.stat-card p{
-    color:var(--text-secondary);
-}
-
-/* ======================================================
-   CONTACT
-====================================================== */
-
-.contact-wrapper{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:40px;
-
-    margin-top:70px;
-}
-
-.contact-card{
-
-    padding:40px;
-
-    border-radius:32px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    backdrop-filter:blur(20px);
-}
-
-form{
-    display:grid;
-    gap:18px;
-}
-
-input,
-textarea{
-
-    width:100%;
-
-    padding:18px 22px;
-
-    border-radius:18px;
-
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.04);
-
-    color:var(--text);
-
-    outline:none;
-
-    transition:.3s;
-}
-
-input:focus,
-textarea:focus{
-
-    border-color:rgba(212,175,55,.5);
-
-    box-shadow:
-    0 0 0 4px rgba(212,175,55,.1);
-}
-
-textarea{
-    min-height:160px;
-    resize:vertical;
-}
-
-/* ======================================================
-   FOOTER
-====================================================== */
-
-footer{
-
-    padding:50px 0;
-
-    border-top:1px solid var(--border);
-}
-
-.footer-content{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:30px;
-    flex-wrap:wrap;
-}
-
-.footer-content p{
-    color:var(--text-secondary);
-}
-
-/* ======================================================
-   REVEAL ANIMATION
-====================================================== */
-
-.reveal{
-
-    opacity:0;
-
-    transform:translateY(60px);
-
-    transition:
-    opacity .9s ease,
-    transform .9s ease;
-}
-
-.reveal.active{
-
-    opacity:1;
-
-    transform:translateY(0);
-}
-
-/* ======================================================
-   MOBILE NAV
-====================================================== */
-
-.menu-btn{
-    display:none;
-}
-
-/* ======================================================
-   RESPONSIVE
-====================================================== */
-
-@media(max-width:1100px){
-
-    .hero-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero-image img{
-        height:500px;
-    }
-
-    .floating-card{
-        left:20px;
-        bottom:20px;
-    }
-
-    .contact-wrapper{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:800px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .menu-btn{
-        display:flex;
-    }
-
-    .hero{
-        text-align:center;
-    }
-
-    .hero-actions{
-        justify-content:center;
-    }
-
-    .section-title{
-        font-size:3rem;
-    }
-
-    .hero-image img{
-        height:420px;
-    }
-
-    .floating-card{
-        position:relative;
-        width:100%;
-        left:auto;
-        bottom:auto;
-        margin-top:20px;
-    }
-
-    .portfolio-card{
-        height:400px;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .hero-title{
-        font-size:3.2rem;
-    }
-
-    .section-title{
-        font-size:2.4rem;
-    }
-
-    section{
-        padding:90px 0;
-    }
-
-}
-
-/* ======================================================
-   MODERN SCROLLBAR
-====================================================== */
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:var(--gradient);
-    border-radius:999px;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSD Modular | Architectural Precision & Interior Strategy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #c5a059;
+            --primary-glow: rgba(197, 160, 89, 0.3);
+            --bg: #0a0c10;
+            --surface: #12151c;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+
+            --header-h: 80px;
+            --radius: 24px;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --border: rgba(15, 23, 42, 0.08);
+            --glass: rgba(15, 23, 42, 0.03);
+        }
+
+        /* Base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; transition: background 0.4s ease; }
+        .container { width: min(1300px, 90%); margin-inline: auto; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        section { padding-block: clamp(5rem, 10vw, 8rem); }
+
+        /* Header & Nav */
+        .header { position: fixed; top: 0; width: 100%; z-index: 1000; height: var(--header-h); display: flex; align-items: center; transition: var(--transition); }
+        .header.scrolled { background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); height: 70px; }
+        .nav-wrapper { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        .desktop-nav { display: flex; gap: 2.5rem; }
+        .desktop-nav a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+        .desktop-nav a:hover { color: var(--primary); }
+        @media (max-width: 1024px) { .desktop-nav { display: none; } }
+
+        /* Mobile Trigger & Drawer */
+        .menu-trigger { width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; z-index: 1100; }
+        .menu-trigger span { width: 100%; height: 2px; background: var(--text); transition: 0.3s; }
+        .menu-trigger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-trigger.active span:nth-child(2) { opacity: 0; }
+        .menu-trigger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        .mobile-drawer { position: fixed; inset: 0; background: var(--bg); z-index: 1050; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: 0.5s; transform: translateY(-5%); }
+        .mobile-drawer.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .mobile-drawer li { margin-block: 1.5rem; text-align: center; }
+        .mobile-drawer a { font-size: 2.5rem; font-weight: 800; }
+
+        /* Buttons & Theme Toggle */
+        .btn { padding: 0.8rem 1.8rem; border-radius: 12px; font-weight: 600; display: inline-flex; align-items: center; cursor: pointer; border: none; transition: var(--transition); }
+        .btn-primary { background: var(--primary); color: #000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px var(--primary-glow); }
+
+        .theme-fab { position: fixed; bottom: 30px; right: 30px; width: 56px; height: 56px; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; display: grid; place-items: center; cursor: pointer; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-size: 1.5rem; transition: 0.3s; }
+        .theme-fab:hover { transform: scale(1.1); border-color: var(--primary); }
+
+        /* Section Headings */
+        .section-tag { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        .section-title { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+        .section-title span { color: var(--primary); }
+
+        /* Layout Grids */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: var(--header-h); }
+        .hero-img-box { aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 40px 80px rgba(0,0,0,0.4); max-height: 75vh; }
+
+        /* Stats (Now in About Section) */
+        .stats-wrap { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--primary); font-weight: 800; line-height: 1; }
+        .stat-item p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 0.5rem; }
+
+        /* Capabilities List (Premium Hover Effect) */
+        .capability-item { padding: 2rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; }
+        .capability-item:hover { padding-inline: 1rem; background: var(--glass); border-color: var(--primary); }
+        .capability-item h3 { font-size: 1.5rem; font-weight: 600; }
+        .capability-item p { color: var(--text-muted); text-align: right; max-width: 300px; }
+
+        /* Cards (Method & Testimonials) */
+        .card { background: var(--surface); padding: 3rem; border-radius: var(--radius); border: 1px solid var(--border); }
+        .method-number { font-size: 3rem; font-weight: 800; color: var(--primary); opacity: 0.2; display: block; margin-bottom: 1rem; }
+
+        .testimonial-text { font-size: 1.2rem; font-style: italic; margin-bottom: 2rem; line-height: 1.8; }
+        .client-info h4 { color: var(--primary); }
+        .client-info p { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Portfolio */
+        .work-card { position: relative; border-radius: var(--radius); overflow: hidden; height: 450px; border: 1px solid var(--border); }
+        .work-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; opacity: 0; transition: 0.4s; color: #fff; }
+        .work-card:hover .work-overlay { opacity: 1; }
+
+        /* Contact Form */
+        .contact-wrap { background: var(--surface); padding: 4rem; border-radius: var(--radius); border: 1px solid var(--border); }
+        input, textarea { width: 100%; padding: 1.2rem; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: var(--text); outline: none; transition: 0.3s; margin-bottom: 1rem; font-family: inherit; }
+        input:focus, textarea:focus { border-color: var(--primary); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 992px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero .grid-2 { text-align: center; }
+            .hero-img-box { order: -1; width: 90%; margin-inline: auto; max-height: 50vh; }
+            .stats-wrap { justify-content: center; }
+            .capability-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .capability-item p { text-align: left; }
+            .contact-wrap { padding: 2rem; }
+        }
+
+        /* Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
-
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-glow"></div>
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-<div class="container nav">
-
-<a href="#" class="logo">
-SSD Modular<span>.</span>
-</a>
-
-<ul class="nav-links">
-
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-<div class="nav-actions">
-
-<button class="theme-toggle" id="themeToggle">
-☀
-</button>
-
-<a href="#contact" class="btn btn-primary">
-Get Consultation
-</a>
-
-</div>
-
-</div>
-
-</header>
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-<div class="container hero-grid">
-
-<div class="hero-content reveal">
-
-<div class="section-tag">
-Premium Interior Solutions
-</div>
-
-<h1 class="hero-title">
-
-Designing
-<span>Luxury Spaces</span>
-For Modern Living
-
-</h1>
-
-<p class="hero-description">
-
-We craft premium interiors, modular kitchens,
-wardrobes, living spaces, and commercial
-environments with a perfect blend of
-minimalism, luxury, and functionality.
-
-</p>
-
-<div class="hero-actions">
-
-<a href="#portfolio" class="btn btn-primary">
-View Projects
-</a>
-
-<a href="#services" class="btn btn-outline">
-Explore Services
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-image reveal">
-
-<img
-src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1400&auto=format&fit=crop"
-alt="Premium Interior"
-/>
-
-<div class="floating-card">
-
-<h3>500+</h3>
-
-<p>
-Luxury interiors delivered across
-residential & commercial spaces.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section id="about">
-
-<div class="container reveal">
-
-<div class="section-tag">
-Who We Are
-</div>
-
-<h2 class="section-title">
-
-Crafting Timeless
-<span>Interior Experiences</span>
-
-</h2>
-
-<p class="section-description">
-
-SSD Modular systems Pvt. Ltd. specializes in
-high-end interior and modular design
-solutions tailored for modern lifestyles.
-From elegant residences to premium
-commercial environments, we transform
-spaces into functional works of art.
-
-</p>
-
-<div class="stats">
-
-<div class="stat-card">
-
-<h3 data-count="12">0</h3>
-
-<p>Years Experience</p>
-
-</div>
-
-<div class="stat-card">
-
-<h3 data-count="500">0</h3>
-
-<p>Completed Projects</p>
-
-</div>
-
-<div class="stat-card">
-
-<h3 data-count="98">0</h3>
-
-<p>Client Satisfaction</p>
-
-</div>
-
-<div class="stat-card">
-
-<h3 data-count="35">0</h3>
-
-<p>Expert Designers</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =====================================================
-     SERVICES
-===================================================== -->
-
-<section id="services">
-
-<div class="container reveal">
-
-<div class="section-tag">
-Our Expertise
-</div>
-
-<h2 class="section-title">
-
-Premium
-<span>Design Services</span>
-
-</h2>
-
-<div class="services-grid">
-
-<div class="service-card">
-
-<div class="service-icon">🏠</div>
-
-<h3>Luxury Interiors</h3>
-
-<p>
-Elegant living spaces designed with
-premium aesthetics, comfort, and
-modern functionality.
-</p>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">🍽</div>
-
-<h3>Modular Kitchens</h3>
-
-<p>
-Smart and sophisticated modular
-kitchens with seamless finishes
-and optimized layouts.
-</p>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">🛏</div>
-
-<h3>Custom Wardrobes</h3>
-
-<p>
-Beautiful storage solutions crafted
-with luxury materials and
-space-efficient concepts.
-</p>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">🏢</div>
-
-<h3>Commercial Spaces</h3>
-
-<p>
-Innovative office and commercial
-interiors built to inspire
-productivity and brand identity.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =====================================================
-     PORTFOLIO
-===================================================== -->
-
-<section id="portfolio">
-
-<div class="container reveal">
-
-<div class="section-tag">
-Our Works
-</div>
-
-<h2 class="section-title">
-
-Selected
-<span>Luxury Projects</span>
-
-</h2>
-
-<div class="portfolio-grid">
-
-<div class="portfolio-card">
-
-<img
-src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop"
-alt=""
->
-
-<div class="portfolio-overlay">
-<h3>Modern Bedroom</h3>
-</div>
-
-</div>
-
-<div class="portfolio-card">
-
-<img
-src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop"
-alt=""
->
-
-<div class="portfolio-overlay">
-<h3>Premium Kitchen</h3>
-</div>
-
-</div>
-
-<div class="portfolio-card">
-
-<img
-src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
-alt=""
->
-
-<div class="portfolio-overlay">
-<h3>Luxury Living Room</h3>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section id="contact">
-
-<div class="container reveal">
-
-<div class="section-tag">
-Contact Us
-</div>
-
-<h2 class="section-title">
-
-Let's Build Your
-<span>Dream Space</span>
-
-</h2>
-
-<div class="contact-wrapper">
-
-<div class="contact-card">
-
-<h3 style="font-size:2rem; margin-bottom:24px;">
-Contact Information
-</h3>
-
-<div style="display:grid; gap:20px;">
-
-<div>
-<h4>Email</h4>
-<p style="color:var(--text-secondary)">
-info@ssdmodularsys.com
-</p>
-</div>
-
-<div>
-<h4>Phone</h4>
-<p style="color:var(--text-secondary)">
-+91 98765 43210
-</p>
-</div>
-
-<div>
-<h4>Location</h4>
-<p style="color:var(--text-secondary)">
-Belagavi, Karnataka, India
-</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="contact-card">
-
-<form>
-
-<input
-type="text"
-placeholder="Your Name"
-required
->
-
-<input
-type="email"
-placeholder="Email Address"
-required
->
-
-<input
-type="tel"
-placeholder="Phone Number"
->
-
-<textarea
-placeholder="Tell us about your project"
-></textarea>
-
-<button class="btn btn-primary">
-Request Consultation
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-<div class="container footer-content">
-
-<a href="#" class="logo">
-SSD Modular Systems<span>.</span>
-</a>
-
-<p>
-© 2026 SSD Modular Systems Pvt. Ltd.
-All Rights Reserved.
-</p>
-
-</div>
-
-</footer>
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script>
-
-/* ======================================================
-   THEME TOGGLE
-====================================================== */
-
-const themeToggle =
-document.getElementById('themeToggle');
-
-const savedTheme =
-localStorage.getItem('theme');
-
-if(savedTheme === 'light'){
-
-    document.body.classList.add('light');
-    themeToggle.innerHTML = '🌙';
-
-}
-
-themeToggle.addEventListener('click', () => {
-
-    document.body.classList.toggle('light');
-
-    const isLight =
-    document.body.classList.contains('light');
-
-    localStorage.setItem(
-        'theme',
-        isLight ? 'light' : 'dark'
-    );
-
-    themeToggle.innerHTML =
-    isLight ? '🌙' : '☀';
-
-});
-
-/* ======================================================
-   REVEAL ANIMATION
-====================================================== */
-
-const observer =
-new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add('active');
-
+    <button class="theme-fab" id="themeBtn" aria-label="Toggle Theme">🌓</button>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+        <ul>
+            <li><a href="#about" onclick="toggleMenu()">Studio</a></li>
+            <li><a href="#capabilities" onclick="toggleMenu()">Capabilities</a></li>
+            <li><a href="#portfolio" onclick="toggleMenu()">Archive</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <header class="header" id="header">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">SSD<span>.</span>MODULAR</a>
+
+            <nav class="desktop-nav">
+                <a href="#about">Studio</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#method">Method</a>
+                <a href="#portfolio">Archive</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <a href="#contact" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Consultation</a>
+                <div class="menu-trigger" id="menuBtn">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container grid-2">
+                <div class="reveal">
+                    <span class="section-tag">SSD Modular Interiors</span>
+                    <h1 class="section-title">Precision <span>Architecture</span> <br>for Modern Entities</h1>
+                    <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 500px; margin-bottom: 2rem;">Engineering high-performance modular interiors for residential luxury and commercial efficiency.</p>
+                    <a href="#portfolio" class="btn btn-primary">Explore Archive</a>
+                </div>
+                <div class="hero-img-box reveal">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200" alt="Sophisticated Interior">
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDIO (ABOUT) - NEW -->
+        <section id="about" style="background: var(--surface);">
+            <div class="container grid-2">
+                <div class="reveal">
+                    <h2 class="section-title">The <span>Philosophy</span></h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">Founded in 2014, SSD Modular bridges the gap between visionary architecture and functional reality. We believe that an interior space should not only look spectacular but operate with seamless, mechanical precision.</p>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">By integrating German-engineered hardware with bespoke Indian craftsmanship, we deliver environments built for longevity and aesthetic dominance.</p>
+                </div>
+                <div class="stats-wrap reveal" style="border: none; margin: 0; padding: 0;">
+                    <div class="stat-item"><h3 data-count="12">0</h3><p>Years Experience</p></div>
+                    <div class="stat-item"><h3 data-count="500">0</h3><p>Global Projects</p></div>
+                    <div class="stat-item"><h3 data-count="98">0</h3><p>% Client Retention</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPABILITIES (SERVICES) - NEW -->
+        <section id="capabilities">
+            <div class="container">
+                <div class="reveal" style="margin-bottom: 3rem;">
+                    <span class="section-tag">Expertise</span>
+                    <h2 class="section-title">Core <span>Capabilities</span></h2>
+                </div>
+                <div class="reveal">
+                    <div class="capability-item">
+                        <h3>Haute Residential</h3>
+                        <p>Complete interior architecture for luxury estates, villas, and penthouses.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Modular Kitchen Systems</h3>
+                        <p>Ergonomic, high-end culinary spaces featuring smart storage solutions.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Commercial Fit-outs</h3>
+                        <p>Strategic office and retail environments designed to maximize workflow.</p>
+                    </div>
+                    <div class="capability-item">
+                        <h3>Bespoke Millwork</h3>
+                        <p>Custom-crafted wardrobes, vanities, and specialized cabinetry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- METHOD -->
+        <section id="method" style="background: var(--surface);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                    <span class="section-tag">Process</span>
+                    <h2 class="section-title">Strategic <span>Method</span></h2>
+                </div>
+                <div class="grid-3">
+                    <div class="card reveal"><span class="method-number">01</span><h3>Spatial Audit</h3><p style="color: var(--text-muted); margin-top: 1rem;">Analyzing structural flow, light vectors, and utility requirements before drafting.</p></div>
+                    <div class="card reveal"><span class="method-number">02</span><h3>Precision Engineering</h3><p style="color: var(--text-muted); margin-top: 1rem;">Utilizing CNC manufacturing for millimetric perfection in every module.</p></div>
+                    <div class="card reveal"><span class="method-number">03</span><h3>Curated Execution</h3><p style="color: var(--text-muted); margin-top: 1rem;">White-glove installation ensuring every hinge operates with tactile satisfaction.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section id="portfolio">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                    <span class="section-tag">Selected Works</span>
+                    <h2 class="section-title">The <span>Archive</span></h2>
+                </div>
+                <div class="grid-3">
+                    <div class="work-card reveal"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800" alt="Work"><div class="work-overlay"><h3>Skyline Penthouse</h3><p>Residential</p></div></div>
+                    <div class="work-card reveal"><img src="https://images.unsplash.com/photo-1556911223-e4524c73c474?auto=format&fit=crop&q=80&w=800" alt="Work"><div class="work-overlay"><h3>Culinary Laboratory</h3><p>Modular Kitchen</p></div></div>
+                    <div class="work-card reveal"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Work"><div class="work-overlay"><h3>Venture HQ</h3><p>Commercial Space</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS (SOCIAL PROOF) - NEW -->
+        <section id="testimonials" style="background: var(--surface);">
+            <div class="container">
+                <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+                    <span class="section-tag">Clientele</span>
+                    <h2 class="section-title">Verified <span>Excellence</span></h2>
+                </div>
+                <div class="grid-2">
+                    <div class="card reveal">
+                        <p class="testimonial-text">"SSD Modular transformed our corporate office. The precision of their modular units and their understanding of spatial psychology drastically improved our team's workflow."</p>
+                        <div class="client-info"><h4>A. Sharma</h4><p>CEO, TechVentures</p></div>
+                    </div>
+                    <div class="card reveal">
+                        <p class="testimonial-text">"The bespoke kitchen they installed in our villa is a masterpiece. Flawless German hardware, stunning finishes, and delivered exactly on schedule."</p>
+                        <div class="client-info"><h4>M. Desai</h4><p>Private Residence</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container grid-2 contact-wrap reveal">
+                <div>
+                    <h2 class="section-title">Start Your <br><span>Project</span></h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Connect with our lead strategists for a confidential spatial consultation.</p>
+                    <div style="display: grid; gap: 1rem; color: var(--text-muted);">
+                        <p><strong style="color: var(--text);">Email:</strong> design@ssdmodular.com</p>
+                        <p><strong style="color: var(--text);">Phone:</strong> +91 98765 43210</p>
+                        <p><strong style="color: var(--text);">HQ:</strong> Belagavi, Karnataka, India</p>
+                    </div>
+                </div>
+                <form>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <input type="text" placeholder="Project Scope (e.g., Office Fit-out, Kitchen)">
+                    <textarea placeholder="Brief Project Overview" rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request Consultation</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 4rem 0; border-top: 1px solid var(--border);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <p class="logo">SSD<span>.</span>MODULAR</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 SSD Modular Systems Pvt. Ltd. All rights reserved.</p>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" style="font-size: 0.85rem; color: var(--text-muted);">LinkedIn</a>
+                <a href="#" style="font-size: 0.85rem; color: var(--text-muted);">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const drawer = document.getElementById('mobileDrawer');
+        function toggleMenu() {
+            menuBtn.classList.toggle('active');
+            drawer.classList.toggle('open');
+            document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeBtn.innerText = document.body.classList.contains('light-mode') ? '🌙' : '🌓';
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Animations & Counters
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function animateCount(el) {
+            if (el.classList.contains('done')) return;
+            const target = +el.getAttribute('data-count');
+            let current = 0;
+            const timer = setInterval(() => {
+                current += Math.ceil(target / 40);
+                if (current >= target) { el.innerText = target + "+"; clearInterval(timer); el.classList.add('done'); }
+                else { el.innerText = current; }
+            }, 30);
         }
 
-    });
-
-},{
-    threshold:.15
-});
-
-document.querySelectorAll('.reveal')
-.forEach(el => observer.observe(el));
-
-/* ======================================================
-   COUNTER ANIMATION
-====================================================== */
-
-const counters =
-document.querySelectorAll('[data-count]');
-
-const speed = 200;
-
-counters.forEach(counter => {
-
-    const animate = () => {
-
-        const value =
-        +counter.getAttribute('data-count');
-
-        const data =
-        +counter.innerText;
-
-        const time =
-        value / speed;
-
-        if(data < value){
-
-            counter.innerText =
-            Math.ceil(data + time);
-
-            requestAnimationFrame(animate);
-
-        } else {
-
-            counter.innerText = value;
-
-        }
-
-    };
-
-    animate();
-
-});
-
-</script>
-
+        // Init Theme
+        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); themeBtn.innerText = '🌙'; }
+    </script>
 </body>
 </html>
